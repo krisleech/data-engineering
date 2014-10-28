@@ -51,6 +51,12 @@ rspec
 guard -c
 ```
 
+### Coverage
+
+```
+open coverage/index.html
+```
+
 ## TODO
 
 * record imports, hashing file content, to prevent re-import of same file
