@@ -17,6 +17,8 @@ class Import
   # commit the data within a transaction
   #
   def commit
+    @gross_revenue = 0
+
     transaction do
       parsed_tsv do |row|
 
@@ -44,7 +46,6 @@ class Import
   private
 
   def update_revenue(purchase)
-    @gross_revenue ||= 0
     @gross_revenue += purchase.gross_revenue
   end
 
