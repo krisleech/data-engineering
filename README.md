@@ -42,3 +42,9 @@ rspec
 ```
 guard -c
 ```
+
+## TODO
+
+* record imports, hashing file content, to prevent re-import of same file
+* allow user to see imported data
+* authentication
