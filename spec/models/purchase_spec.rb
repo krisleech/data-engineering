@@ -5,7 +5,7 @@ require_relative '../../app/models/item'
 
 describe Purchase do
   it 'can be created' do
-    Purchase.create(item_id: 1, purchaser_id: 1, quantity: 1)
+    expect(Purchase.create(item_id: 1, purchaser_id: 1, quantity: 1)).to be_truthy
   end
 
   it '.gross_revenue returns gross revenue' do

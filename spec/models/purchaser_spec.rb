@@ -3,6 +3,6 @@ require_relative '../../app/models/purchaser'
 
 describe Purchaser do
   it 'can be created' do
-    Purchaser.create(name: 'foo')
+    expect(Purchaser.create(name: 'foo')).to be_truthy
   end
 end

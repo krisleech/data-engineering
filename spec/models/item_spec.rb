@@ -4,6 +4,6 @@ require_relative '../../app/models/item'
 
 describe Item do
   it 'can be created' do
-    Item.create(merchant_id: 1, description: 'foo', price: 1.10)
+    expect(Item.create(merchant_id: 1, description: 'foo', price: 1.10)).to be_truthy
   end
 end

@@ -3,6 +3,6 @@ require_relative '../../app/models/merchant'
 
 describe Merchant do
   it 'can be created' do
-    Merchant.create(name: 'foo', address: 'bar')
+    expect(Merchant.create(name: 'foo', address: 'bar')).to be_truthy
   end
 end
