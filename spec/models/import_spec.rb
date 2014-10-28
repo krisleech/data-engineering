@@ -3,17 +3,17 @@ require 'support/activerecord_helper'
 require_relative '../../app/models/import'
 
 describe Import do
+  subject(:import) { Import.new(tsv_data: tsv_data) }
+
+  after do
+    Merchant.delete_all
+    Item.delete_all
+    Purchaser.delete_all
+    Purchase.delete_all
+  end
+
   context 'given valid data' do
     let(:tsv_data)   { File.read(File.expand_path('spec/fixtures/valid_sample.tsv')) }
-
-    subject(:import) { Import.new(tsv_data: tsv_data) }
-
-    before do
-      Merchant.delete_all
-      Item.delete_all
-      Purchaser.delete_all
-      Purchase.delete_all
-    end
 
     it 'persists merchants to database' do
       expect { import.commit }.to change { Merchant.count }.by(3)
@@ -37,6 +37,22 @@ describe Import do
     end
   end
 
+  context 'given invalid data' do
+    let(:tsv_data) { File.read(File.expand_path('spec/fixtures/invalid_sample.tsv')) }
+
+    it 'will rollback on error' do
+      import.commit
+      expect(Purchase.count).to eq 0
+      expect(Merchant.count).to eq 0
+      expect(Purchaser.count).to eq 0
+      expect(Item.count).to eq 0
+    end
+
+    it 'is a failure' do
+      import.commit
+      expect(import.successful?).to be_falsy
+    end
+  end
 
   describe 'unit tests' do
   end
