@@ -8,6 +8,14 @@ feature 'importing a CSV file' do
     attach_file('file', csv_fixture_path)
     click_button 'Submit'
 
-    expect(page).to have_content('Import Successful')
+    expect(page).to have_content('Import successful')
+  end
+
+  scenario 'displays gross revenue' do
+    visit root_url
+    attach_file('file', csv_fixture_path)
+    click_button 'Submit'
+
+    expect(page).to have_content('Gross Revenue 95.0')
   end
 end

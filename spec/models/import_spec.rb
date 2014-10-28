@@ -5,13 +5,6 @@ require_relative '../../app/models/import'
 describe Import do
   subject(:import) { Import.new(tsv_data: tsv_data) }
 
-  after do
-    Merchant.delete_all
-    Item.delete_all
-    Purchaser.delete_all
-    Purchase.delete_all
-  end
-
   context 'given valid data' do
     let(:tsv_data)   { File.read(File.expand_path('spec/fixtures/valid_sample.tsv')) }
 
@@ -34,6 +27,11 @@ describe Import do
     it 'is successful' do
       import.commit
       expect(import.successful?).to be_truthy
+    end
+
+    it 'calculates the gross revenue' do
+      import.commit
+      expect(import.gross_revenue).to eq 95.0
     end
   end
 

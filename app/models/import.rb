@@ -6,9 +6,12 @@ require_relative 'purchase'
 require_relative 'purchaser'
 
 class Import
+  attr_reader :gross_revenue
+
   def initialize(tsv_data:)
     @tsv_data   = tsv_data
     @successful = nil
+    @gross_revenue = nil
   end
 
   # commit the data within a transaction
@@ -21,9 +24,10 @@ class Import
         item      = create_item(row, merchant)
         purchaser = create_purchaser(row)
 
-        Purchase.create!(item_id:      item.id,
-                         purchaser_id: purchaser.id,
-                         quantity:     row['purchase count'])
+        purchase  = Purchase.create!(item_id:      item.id,
+                                     purchaser_id: purchaser.id,
+                                     quantity:     row['purchase count'])
+        update_revenue(purchase)
       end
     end
 
@@ -38,6 +42,11 @@ class Import
   end
 
   private
+
+  def update_revenue(purchase)
+    @gross_revenue ||= 0
+    @gross_revenue += purchase.gross_revenue
+  end
 
   def parsed_tsv(&block)
     CSV.parse(@tsv_data, col_sep: "\t", headers: true, &block)
