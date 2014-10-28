@@ -3,6 +3,7 @@ require 'csv'
 require_relative 'merchant'
 require_relative 'item'
 require_relative 'purchase'
+require_relative 'purchaser'
 
 class Import
   def initialize(tsv_data: )
@@ -21,6 +22,8 @@ class Import
       item = Item.find_or_create_by!(merchant_id: merchant.id,
                                      description: row['item description'],
                                      price:       row['item price'])
+
+      purchaser = Purchaser.find_or_create_by!(name: row['purchaser name'])
 
       # Purchase.create(item_id)
     end
