@@ -1,7 +1,6 @@
 require 'support/activerecord_helper'
 
 require_relative '../../app/models/import'
-require_relative '../../app/models/purchase'
 
 describe Import do
   context 'given valid data' do
@@ -11,6 +10,7 @@ describe Import do
 
     before do
       Merchant.delete_all
+      Item.delete_all
       Purchase.delete_all
     end
 
@@ -18,8 +18,12 @@ describe Import do
       expect { import.commit }.to change { Merchant.count }.by(3)
     end
 
+    it 'persists items to database' do
+      expect { import.commit }.to change { Item.count }.by(3)
+    end
+
     it 'is successful' do
-      # import.commit
+      import.commit
       expect(import.successful?).to be_truthy
     end
   end

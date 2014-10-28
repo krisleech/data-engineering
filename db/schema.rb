@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028134255) do
+ActiveRecord::Schema.define(version: 20141028140411) do
+
+  create_table "items", force: true do |t|
+    t.integer  "merchant_id", null: false
+    t.float    "price",       null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "merchants", force: true do |t|
     t.string   "name",       null: false
