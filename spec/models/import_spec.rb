@@ -11,8 +11,8 @@ describe Import do
     before do
       Merchant.delete_all
       Item.delete_all
-      Purchase.delete_all
       Purchaser.delete_all
+      Purchase.delete_all
     end
 
     it 'persists merchants to database' do
@@ -25,6 +25,10 @@ describe Import do
 
     it 'persists purchaser to database' do
       expect { import.commit }.to change { Purchaser.count }.by(3)
+    end
+
+    it 'persists purchases to database' do
+      expect { import.commit }.to change { Purchase.count }.by(4)
     end
 
     it 'is successful' do

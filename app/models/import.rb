@@ -25,7 +25,9 @@ class Import
 
       purchaser = Purchaser.find_or_create_by!(name: row['purchaser name'])
 
-      # Purchase.create(item_id)
+      Purchase.create!(item_id:      item.id,
+                       purchaser_id: purchaser.id,
+                       quantity:     row['purchase count'])
     end
 
     @successful = true

@@ -1,4 +1,5 @@
 require 'support/activerecord_helper'
+
 require_relative '../../app/models/purchase'
 
 describe Purchase do
