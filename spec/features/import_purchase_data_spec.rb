@@ -6,8 +6,8 @@ feature 'importing a CSV file' do
   scenario 'uploading a valid CSV file' do
     visit root_url
     attach_file('file', csv_fixture_path)
-    click_button 'Import'
+    click_button 'Submit'
 
-    expect(page).to have_content('Successfully imported')
+    expect(page).to have_content('Import Successful')
   end
 end

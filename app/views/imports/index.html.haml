@@ -1,0 +1,9 @@
+%h2 Imports
+
+%div#new_import
+  = form_tag({action: :create}, multipart: true) do
+    %p
+      File to import:
+      = file_field_tag :file
+    %p
+      = submit_tag 'Submit'

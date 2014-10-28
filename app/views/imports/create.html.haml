@@ -1,0 +1,6 @@
+- if @import.successful?
+  %p Import successful
+
+  = link_to 'Import another file', imports_path
+- else
+  %p Import failed

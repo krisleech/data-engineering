@@ -9,6 +9,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'haml'
+
 gem 'jquery-rails', '~> 4.0.0.beta2'
 gem 'turbolinks'
 

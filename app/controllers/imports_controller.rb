@@ -1,5 +1,9 @@
 class ImportsController < ApplicationController
   def index
-    render text: 'foo'
+  end
+
+  def create
+    @import = Import.new(tsv_data: params[:file].read)
+    @import.commit
   end
 end

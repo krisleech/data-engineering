@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   root 'imports#index'
 
+  get  'imports' => 'imports#index', as: :imports
+  post 'imports' => 'imports#create', as: :import
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
