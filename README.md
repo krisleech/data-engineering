@@ -55,3 +55,5 @@ guard -c
 
 * record imports, hashing file content, to prevent re-import of same file
 * allow user to see imported data
+* add validations to models to ensure data is correct shape
+* offload parsing and import to a background process
