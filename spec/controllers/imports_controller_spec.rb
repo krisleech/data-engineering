@@ -19,4 +19,15 @@ describe ImportsController do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'authentication' do
+    after { ENV['AUTH_TOKENS'] = '' }
+
+    it 'requires token set in ENV' do
+      ENV['AUTH_TOKENS'] = '1234'
+      get :index
+      expect(response).to_not be_success
+      expect(response).to have_http_status(401)
+    end
+  end
 end

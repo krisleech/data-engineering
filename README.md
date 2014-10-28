@@ -29,6 +29,14 @@ The `database.yml` is preconfigured to use an SQLite database.
 
 Visit `http://localhost.com:3000/`
 
+### Authentication
+
+The website uses HTTP Authentication, but only the password is read and must
+match a token in `AUTH_TOKENS` environment variable.
+
+By default the token is `1234`, see `.env`. If `AUTH_TOKENS` is set to an empty
+string then authentication is turned off.
+
 ## Development
 
 ### Running the specs
@@ -47,4 +55,3 @@ guard -c
 
 * record imports, hashing file content, to prevent re-import of same file
 * allow user to see imported data
-* authentication

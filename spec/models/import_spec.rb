@@ -2,7 +2,7 @@ require 'support/activerecord_helper'
 
 require_relative '../../app/models/import'
 
-describe Import do
+describe Import, type: :model do
   subject(:import) { Import.new(tsv_data: tsv_data) }
 
   context 'given valid data' do
