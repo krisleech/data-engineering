@@ -23,11 +23,11 @@ bin/setup
 rails server
 ```
 
-Note: configure `database.yml` to use the desired database.
+The `database.yml` is preconfigured to use an SQLite database.
 
 ## Usage
 
-Visit `http://localhost.com:8080/`
+Visit `http://localhost.com:3000/`
 
 ## Development
 
@@ -37,7 +37,7 @@ Visit `http://localhost.com:8080/`
 rspec
 ```
 
-### Continually run specs
+### Continually running specs
 
 ```
 guard -c
